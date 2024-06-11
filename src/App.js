@@ -7,6 +7,7 @@ import {
   View,
   StyleSheet,
   Font,
+  PDFDownloadLink,
   PDFViewer,
 } from "@react-pdf/renderer";
 import RobotoBold from "../src/fonts/ibm/Roboto-Bold.ttf";
@@ -331,9 +332,8 @@ const Review = () => {
           </Page>
         </Document>
       </PDFViewer>
-
-      {/* PDF Download Link */}
-      {/* <PDFDownloadLink
+      PDF Download Link
+      <PDFDownloadLink
         document={
           <Document>
             <Page>
@@ -344,10 +344,24 @@ const Review = () => {
         fileName="example.pdf"
       >
         {({ blob, url, loading, error }) =>
-          loading ? "Loading document..." : "Download PDF"
+          loading ? (
+            "Loading document..."
+          ) : (
+            <button
+              style={{
+                padding: "10px 20px",
+                backgroundColor: "#4CAF50",
+                color: "white",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+              }}
+            >
+              Download PDF
+            </button>
+          )
         }
       </PDFDownloadLink>
-      <img src="/CheckEmail.png" className=" w-[50px] h-[50px]" /> */}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import {
   Document,
   Page,
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
 });
 
 // Define the content as a functional component
-const Content = ({ formik, isShow }) => (
+export const Content = ({}) => (
   <>
     <View style={styles.firstContainer}>
       <View style={styles.sidediv1} />
@@ -319,73 +319,3 @@ const Content = ({ formik, isShow }) => (
     </View>
   </>
 );
-
-// Define the PDF generator component
-const Review = () => {
-  const downloadLink = useRef();
-
-  const handleDownload = () => {
-    if (downloadLink.current) {
-      downloadLink.current.click();
-    }
-  };
-
-  return (
-    <div className="">
-      {/* PDF Viewer */}
-      <PDFViewer style={{ width: "100%", height: "1230px" }}>
-        <Document>
-          <Page size="A4" style={styles.page}>
-            <Content />
-          </Page>
-        </Document>
-      </PDFViewer>
-      <PDFDownloadLink
-        document={
-          <Document>
-            <Page>
-              <Content />
-            </Page>
-          </Document>
-        }
-        fileName="example.pdf"
-      >
-        {({ blob, url, loading, error }) =>
-          loading ? (
-            "Loading document..."
-          ) : (
-            <button
-              ref={downloadLink}
-              style={{
-                padding: "10px 20px",
-                backgroundColor: "#4CAF50",
-                color: "white",
-                border: "none",
-                borderRadius: "5px",
-                cursor: "pointer",
-              }}
-            >
-              Download PDF
-            </button>
-          )
-        }
-      </PDFDownloadLink>
-      <button
-        id="imageInput"
-        onClick={handleDownload}
-        style={{
-          padding: "10px 20px",
-          backgroundColor: "#4CAF50",
-          color: "white",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer",
-        }}
-      >
-        sasasasasasa
-      </button>
-    </div>
-  );
-};
-
-export default Review;
